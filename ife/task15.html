@@ -42,7 +42,7 @@ function getData() {
   var cityData = document.querySelectorAll('#source li');
   var data = [];
   for(var i=0;i<cityData.length;i++){
-    data.push(cityData[i].innerHTML.split("空气质量："));
+    data.push(cityData[i].innerText.split("空气质量："));
   }
   /*
   data = [
@@ -79,9 +79,8 @@ function render(data) {
   var tempHtml = "";
   c = 0;
   for(var i=0;i<data.length;i++){
-    var b = document.createElement('b');
-    b.innerText = data[i][1];
-    tempHtml += "<li>第"+(++c)+"名 "+data[i][0]+"空气质量："+b.innerHTML+"</li>";
+    var b = "<b>"+data[i][1]+"</b>";
+    tempHtml += "<li>第"+(++c)+"名 "+data[i][0]+"空气质量："+b+"</li>";
   }
   resortHtml.innerHTML = tempHtml;
 }
