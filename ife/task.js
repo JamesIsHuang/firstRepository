@@ -64,6 +64,7 @@ function init() {
   // 在这下面给add-btn绑定一个点击事件，点击时触发addBtnHandle函数
  	document.getElementById("add-btn").addEventListener("click", addBtnHandle);
  	document.getElementById("aqi-table").addEventListener("click", function(event){
+        console.log(event);
         if(event.target.nodeName.toLowerCase() === 'button') delBtnHandle(event.target.dataset.city);
     })
 

@@ -1,0 +1,60 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 01</title>
+    <style type="text/css">
+	    @keyframes mymove
+		{
+			from {position: relative;
+    				bottom: 100px;}
+			to {position: relative;
+    				bottom: 0;}
+		}
+
+    	.aqi-chart-wrap{
+    		text-align: center;
+    		text-align: center;
+		    height: 600px;
+		    position: relative;
+		    display: flex;
+		   	align-items: flex-end;
+		   	width: 90%;
+		   	margin: 0 auto;
+	        justify-content: center
+    	}
+    	.aqi-chart-wrap div{
+    		animation:mymove .5s ease-in-out;
+    	}
+    </style>
+  </head>
+<body>
+  <fieldset id="form-gra-time">
+    <legend>请选择日期粒度：</legend>
+    <label>日<input name="gra-time" value="day" type="radio" checked="checked"></label>
+    <label>周<input name="gra-time" value="week" type="radio"></label>
+    <label>月<input name="gra-time" value="month" type="radio"></label>
+  </fieldset>
+
+  <fieldset>
+    <legend>请选择查看的城市：</legend>
+    <select id="city-select">
+      <option>北京</option>
+      <option>上海</option>
+      <option>广州</option>
+      <option>深圳</option>
+      <option>成都</option>
+      <option>西安</option>
+      <option>福州</option>
+      <option>厦门</option>
+      <option>沈阳</option>
+    </select>
+  </fieldset>
+  <h1 style="text-align:center">北京1到3月天气状况</h1>
+  <div class="aqi-chart-wrap">
+
+
+  </div>
+  <script src="task17.js"></script>
+</body>
+</html>
