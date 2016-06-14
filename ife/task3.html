@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>task3</title>
+	<style type="text/css">
+		.div1{
+			float: left;
+		}
+		.div3{
+			float: right;
+		}
+		.div1{
+		    width: 200px;
+		    height: 100px;
+		    border: 1px solid;
+		}
+		.div2{
+			height: 200px;
+			border:1px solid green;
+			margin: 20px;
+			margin: 0 140px 0 220px;
+		}
+		.div3{
+			width:120px;
+			height: 300px;
+			border:1px solid red;
+		}
+		.outerdiv2,.outerdiv3,.outerdiv4{
+			width: 100%;
+		    height: 500px;
+		    border: 1px solid red;
+		    position: relative;
+		}
+		.div21{
+			width: 220px;
+			border:1px solid green;
+		}
+		.div23{
+			width: 140px;
+			border: 1px solid blue;
+		}
+		.div22{
+			border:1px solid black;
+		}
+		.div31{
+			width: 200px;
+			border:1px solid green;
+			position: absolute;
+			left: 0;
+			height: 300px
+		}
+		.div33{
+			width: 200px;
+			border: 1px solid blue;
+			position: absolute;
+			right: 0;
+			height: 300px
+		}
+		.div32{
+			margin: 0 220px;
+			height: 300px;
+			border:1px solid black;
+		}
+		
+	 	.bd{
+            padding-left:150px;
+            padding-right:190px;
+            height: 500px
+        }
+        .left{
+            background: #E79F6D;
+            width:150px;
+            float:left;
+            margin-left:-100%;
+            position: relative;
+            left:-150px;
+            height: 500px
+        }
+        .main{
+            background: #D6D6D6;
+            width:100%;
+            float:left;
+            height: 500px
+        }
+        .right{
+            background: #77BBDD;
+            width:190px;
+            float:left;
+            margin-left:-190px;
+            position:relative;
+            right:-190px;
+            height: 500px
+        }
+	</style>
+</head>
+<body>
+	<h1>1</h1>
+	<div class="outerdiv1">
+		<div class="div1"></div>
+		<div class="div3"></div>
+		<div id="div2"class="div2"></div>
+	</div>
+	<h1>2</h1>
+	<table class="outerdiv2">
+		<td class="div21"></td>
+		<td class="div22"></td>
+		<td class="div23"></td>
+	</table>
+	<h1>3</h1>
+	<div class="outerdiv3">
+		<div class="div31"></div>
+		<div class="div33"></div>
+		<div class="div32"></div>
+	</div>
+	<h1>4</h1>
+	<div class="bd">
+	    <div class="main">Main</div>
+	    <div class="left">Left</div>
+	    <div class="right">Right</div>
+    </div>
+</div>
+</body>
+</html>
