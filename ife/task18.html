@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>canvas</title>
+</head>
+<body>
+	<h1 style="text-align:center">
+		用canvas做个K线图,数据来源：网易最近30天的股票数据
+	</h1>
+	<canvas id="stock-canvas" style="display: block;width:50%;height:550px;margin:0 auto"></canvas>
+	<script type="text/javascript">
+		'use strict';
+		var loadStockData = function(r){
+			var NUMS = 30,
+			    data = r.data;
+			if(data.length>NUMS){
+				data = data.slice(data.length - NUMS);
+			}
+			data = data.map(function(x){
+				return {
+					date:x[0],
+					open:x[1],
+					close:x[2],
+					high:x[3],
+					low:x[4],
+					vol:x[5],
+					change:x[6]
+				};
+			})
+			drawStock(data);    
+		}
+
+		var drawStock = function(data){
+			var
+	        canvas = document.getElementById('stock-canvas'),
+	        width = canvas.width,
+	        height = canvas.height,
+	        ctx = canvas.getContext('2d');
+
+			ctx.fillStyle="#000000"; //设置画笔颜色为黑色
+			ctx.fillRect(0,0,width,height); //填充幕布
+
+			var candle_width=width/data.length; //定义蜡烛宽度
+			var ratio=0.3; //蜡烛缩放比例
+			var baseline=height/2;//定义基线
+
+			for(let i=0;i<data.length;i++){
+			var temp=data[i];
+			var up=(temp.close-temp.open>=0)?true:false; //今日上涨还是下跌
+			var candle_x=candle_width*i; //蜡烛的x坐标
+			var candle_height=Math.abs(temp.close-temp.open)*ratio; //蜡烛的高度
+			var candle_y=0; //蜡烛的y坐标
+
+			if (up){
+			    ctx.fillStyle="#ff0000"; //设置填充颜色
+			    ctx.strokeStyle="#ff0000";//设置线条颜色
+			    candle_y=baseline-candle_height; //蜡烛的y坐标
+			    ctx.fillRect(candle_x,candle_y,candle_width,candle_height); //画蜡烛的方块部分
+			    var stick_high_height=(temp.high-temp.close)*ratio; //上方火苗的高度
+			    var stick_low_height=(temp.open-temp.low)*ratio; //下方火苗的高度
+			    ctx.beginPath();
+			    ctx.moveTo(candle_x+candle_width/2,candle_y);
+			    ctx.lineTo(candle_x+candle_width/2,candle_y-stick_high_height);
+			    ctx.stroke(); //画上方火苗
+
+			    ctx.beginPath();
+			    ctx.moveTo(candle_x+candle_width/2,candle_y+candle_height);
+			    ctx.lineTo(candle_x+candle_width/2,candle_y+candle_height+stick_low_height);
+			    ctx.stroke(); //画下方火苗
+			    baseline=candle_y; //重新设置基线
+			}else{
+			    ctx.fillStyle="#00ff00";
+			    ctx.strokeStyle="#00ff00";
+			    candle_y=baseline;
+			    ctx.fillRect(candle_x,candle_y,candle_width,candle_height);
+			    ctx.beginPath();
+			    ctx.moveTo(candle_x+candle_width/2,candle_y);
+			    ctx.lineTo(candle_x+candle_width/2,candle_y-stick_high_height);
+			    ctx.stroke();
+			    ctx.beginPath();
+			    ctx.moveTo(candle_x+candle_width/2,candle_y+candle_height);
+			    ctx.lineTo(candle_x+candle_width/2,candle_y+candle_height+stick_low_height);
+			    ctx.stroke();
+			    baseline=candle_y+candle_height;
+			}
+			}
+		}
+
+		var js = document.createElement('script');
+		js.src = "http://img1.money.126.net/data/hs/kline/day/history/2015/0000001.json?callback=loadStockData&t=" + Date.now();
+		document.getElementsByTagName('head')[0].appendChild(js);
+	</script>
+</body>
+</html>
